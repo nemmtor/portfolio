@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+
+import Html from '@html';
+import { Landing } from '@layouts';
+
+const allPosts = await getCollection('posts');
+---
+
+<Html title="Software Engineer | Kacper Witas">
+  <Landing>
+    <div>Hello world</div>
+    {
+      allPosts.map((post) => (
+        <a href={`/posts/${post.slug}`} class="underline text-blue-500">
+          {post.data.title}
+        </a>
+      ))
+    }
+  </Landing>
+</Html>
